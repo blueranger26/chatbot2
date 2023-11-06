@@ -1,0 +1,32 @@
+import openai
+
+# Set your OpenAI API key
+api_key = 'YOUR_API_KEY_HERE'
+
+# Initialize the OpenAI API client
+openai.api_key = api_key
+
+def generate_healthcare_response(user_input):
+    # Use GPT-3 to generate a healthcare response
+    response = openai.Completion.create(
+        engine="davinci",  # You can specify different engines
+        prompt=user_input,
+        max_tokens=50,  # Limit the length of the response
+    )
+
+    # Extract and return the generated healthcare response
+    return response.choices[0].text
+
+# List of user inputs
+user_inputs = [
+    "What are the symptoms of diabetes?",
+    "How can I prevent heart disease?",
+    "Tell me about the flu vaccine.",
+]
+
+for user_query in user_inputs:
+    # Generate a healthcare response for each user input
+    chatbot_response = generate_healthcare_response(user_query)
+    print(f"User Query: {user_query}")
+    print("Healthcare Chatbot:", chatbot_response)
+    print("\n")
