@@ -1,0 +1,35 @@
+import nltk
+from nltk.chat.util import Chat, reflections
+
+# Define patterns and responses for the chatbot
+pairs = [
+    [
+        r"(.*) my head hurts (.*)",
+        ["I'm sorry to hear that. Headaches can be caused by various factors. It could be stress, dehydration, or other reasons. If it persists, consider consulting a healthcare professional."],
+    ],
+    [
+        r"(.*) I have a fever (.*)",
+        ["A fever may indicate an infection or illness. It's essential to monitor your temperature, rest, and drink fluids. If the fever persists or worsens, please consult a healthcare provider."],
+    ],
+    [
+        r"(.*) I feel tired (.*)",
+        ["Fatigue can be caused by various factors, including lack of sleep, stress, or underlying medical conditions. Ensure you get enough rest and consider speaking to a doctor if it persists."],
+    ],
+    [
+        r"(.*) bye (.*)",
+        ["Goodbye! Take care of your health."],
+    ],
+]
+
+# Create the chatbot
+chatbot = Chat(pairs, reflections)
+
+# Start the conversation
+print("Hi, I'm a simple symptom checker chatbot. Type 'bye' to exit.")
+while True:
+    user_input = input("You: ")
+    if user_input.lower() == "bye":
+        print("Chatbot: Goodbye!")
+        break
+    response = chatbot.respond(user_input)
+    print("Chatbot:", response)
